@@ -47,9 +47,9 @@ test {
 
 tasks.named('test') {
     // Use TestNG for unit tests.
-    useTestNG() // {
-    //     suites 'app/src/test/resources/testng.xml'
-    // }
+    useTestNG() {
+        suites 'src/test/resources/testng.xml'
+    }
 
     def envFile = rootProject.file('secret.env')
     if (envFile.exists()) {

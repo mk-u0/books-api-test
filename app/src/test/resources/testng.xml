@@ -4,19 +4,19 @@
 
     <test name="Volume Search Tests">
         <classes>
-            <class name="tests.VolumeSearchTests"/>
+            <class name="books.api.tests.VolumeSearchTests"/>
         </classes>
     </test>
 
     <test name="Volume Details Tests">
         <classes>
-            <class name="tests.VolumeDetailsTests"/>
+            <class name="books.api.tests.VolumeDetailsTests"/>
         </classes>
     </test>
 
     <test name="Bookshelf Tests">
         <classes>
-            <class name="tests.BookshelfTests"/>
+            <class name="books.api.tests.BookshelfTests"/>
         </classes>
     </test>
 

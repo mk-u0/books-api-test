@@ -9,3 +9,7 @@ build
 
 # Ignore secret file
 secret.env
+
+# Ignore build output
+allure-results
+bin

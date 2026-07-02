@@ -5,7 +5,7 @@ import static io.restassured.RestAssured.*;
 import io.restassured.builder.*;
 import io.restassured.specification.*;
 import static org.hamcrest.Matchers.*;
-import books.api.auth.Authenticator;
+import books.api.config.Authenticator;
 
 public class ApiTests {
     protected final String volumeId = "qqeX8MJurLkC";

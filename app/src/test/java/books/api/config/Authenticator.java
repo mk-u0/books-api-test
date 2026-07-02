@@ -1,4 +1,4 @@
-package books.api.auth;
+package books.api.config;
 
 import static io.restassured.RestAssured.*;
 

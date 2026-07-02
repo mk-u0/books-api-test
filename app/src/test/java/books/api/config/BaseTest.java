@@ -5,13 +5,21 @@ import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
-import io.restassured.authentication.OAuth2Scheme;
+
+import static io.restassured.RestAssured.oauth2;
+
 import org.testng.annotations.BeforeSuite;
 
 
 public class BaseTest {
     protected static final String BASE_URL = "https://www.googleapis.com/books/v1";
     protected static Authenticator auth = Authenticator.getInstance();
+
+    // Common Test Data
+    protected static final String BOOKSHELF_ID   = "2";   // "To Read" shelf
+    protected static final String INVALID_API_KEY = "INVALID_KEY_12345";
+    protected static final String REMOVE_VOLUME_ID = "VCBeDwAAQBAJ";
+    protected static final String VALID_VOLUME_ID = "zyTCAlFPjgYC";
 
     protected static RequestSpecification publicSpec;
     protected static RequestSpecification authSpec;
@@ -28,12 +36,10 @@ public class BaseTest {
                 .log(LogDetail.URI)
                 .build();
 
-        OAuth2Scheme authScheme = new OAuth2Scheme();
-        authScheme.setAccessToken(auth.getToken());
         authSpec = new RequestSpecBuilder()
                 .setBaseUri(BASE_URL)
                 .setContentType(ContentType.JSON)
-                .setAuth(authScheme)
+                .setAuth(oauth2(auth.getToken()))
                 .log(LogDetail.URI)
                 .build();
     }

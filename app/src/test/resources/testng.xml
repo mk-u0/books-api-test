@@ -1,22 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Google Books API Test Suite" verbose="1" thread-count="1">
 
-    <test name="Volume Search Tests">
+    <test name="Public Read Endpoints" preserve-order="true">
         <classes>
-            <class name="books.api.tests.VolumeSearchTests"/>
-        </classes>
+            <class name="books.api.tests.UsersBookshelvesTest" />
+           <class name="books.api.tests.VolumesTest" />
+       </classes>
     </test>
 
-    <test name="Volume Details Tests">
+    <test name="My Library Endpoints" preserve-order="true">
         <classes>
-            <class name="books.api.tests.VolumeDetailsTests"/>
-        </classes>
-    </test>
-
-    <test name="Bookshelf Tests">
-        <classes>
-            <class name="books.api.tests.BookshelfTests"/>
+            <class name="books.api.tests.MyLibraryBookshelvesTest" />
+            <class name="books.api.tests.MyLibraryActionsTest" />
         </classes>
     </test>
 

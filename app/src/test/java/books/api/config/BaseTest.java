@@ -9,6 +9,7 @@ import io.restassured.specification.RequestSpecification;
 import static io.restassured.RestAssured.oauth2;
 
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeMethod;
 
 
 public class BaseTest {
@@ -42,5 +43,15 @@ public class BaseTest {
                 .setAuth(oauth2(auth.getToken()))
                 .log(LogDetail.URI)
                 .build();
+    }
+
+    @BeforeMethod
+    public void throttle() {
+        try {
+            Thread.sleep(100);
+        }
+        catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 }

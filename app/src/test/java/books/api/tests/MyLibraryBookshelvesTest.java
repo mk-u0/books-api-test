@@ -6,19 +6,9 @@ import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
-/**
- * Covers:
- *  GET mylibrary/bookshelves
- *  GET mylibrary/bookshelves/{shelf}
- *  GET mylibrary/bookshelves/{shelf}/volumes
- *
- * These operate on the authenticated user's own library -> authSpec (OAuth2).
- */
+
 public class MyLibraryBookshelvesTest extends BaseTest {
-
     protected static final String INVALID_SHELF_ID = "9999";
-
-    // ---------- mylibrary/bookshelves ----------
 
     @Test
     public void getMyBookshelves_authenticated_returnsBookshelfList() {
@@ -35,14 +25,12 @@ public class MyLibraryBookshelvesTest extends BaseTest {
     @Test
     public void getMyBookshelves_unauthenticated_returnsUnauthorized() {
         given().
-            spec(publicSpec). // no OAuth token attached
+            spec(publicSpec).
         when().
             get("/mylibrary/bookshelves").
         then().
             statusCode(anyOf(is(401), is(403)));
     }
-
-    // ---------- mylibrary/bookshelves/{shelf} ----------
 
     @Test
     public void getMyBookshelf_validShelf_returnsBookshelf() {
@@ -67,8 +55,6 @@ public class MyLibraryBookshelvesTest extends BaseTest {
         then().
             statusCode(anyOf(is(400), is(404)));
     }
-
-    // ---------- mylibrary/bookshelves/{shelf}/volumes ----------
 
     @Test
     public void getMyBookshelfVolumes_validShelf_returnsVolumes() {

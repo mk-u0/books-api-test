@@ -6,19 +6,10 @@ import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
-/**
- * Covers:
- *  GET volumes/{volumeId}
- *  GET volumes?q={search terms}
- *
- * Public, read-only endpoints -> publicSpec (API key auth).
- */
-public class VolumesTest extends BaseTest {
 
+public class VolumesTest extends BaseTest {
     protected static final String INVALID_VOLUME_ID = "not-a-real-volume-id";
     protected static final String SEARCH_TERM = "harry+potter";
-
-    // ---------- volumes/{volumeId} ----------
 
     @Test
     public void getVolume_validVolumeId_returnsVolume() {
@@ -43,8 +34,6 @@ public class VolumesTest extends BaseTest {
         then().
             statusCode(anyOf(is(400), is(404)));
     }
-
-    // ---------- volumes?q={search terms} ----------
 
     @Test
     public void searchVolumes_validQuery_returnsResults() {

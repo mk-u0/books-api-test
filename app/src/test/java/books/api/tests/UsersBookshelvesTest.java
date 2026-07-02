@@ -7,23 +7,11 @@ import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
 
-/**
- * Covers:
- *  GET users/{userId}/bookshelves
- *  GET users/{userId}/bookshelves/{shelf}
- *  GET users/{userId}/bookshelves/{shelf}/volumes
- *
- * These are public, read-only endpoints for any Google user's PUBLIC bookshelves,
- * so they use publicSpec (API key auth) rather than authSpec.
- */
-public class UsersBookshelvesTest extends BaseTest {
 
-    // A Google user id known to have public bookshelves (used in Google's own API docs/examples)
+public class UsersBookshelvesTest extends BaseTest {
     protected static final String VALID_USER_ID = "112556613386590764897";
     protected static final String INVALID_USER_ID = "not-a-real-user-id-123456789";
     protected static final String INVALID_SHELF_ID = "9999";
-
-    // ---------- users/{userId}/bookshelves ----------
 
     @Test
     public void getUserBookshelves_validUser_returnsBookshelfList() {
@@ -48,8 +36,6 @@ public class UsersBookshelvesTest extends BaseTest {
         then().
             statusCode(anyOf(is(400), is(404)));
     }
-
-    // ---------- users/{userId}/bookshelves/{shelf} ----------
 
     @Test
     public void getUserBookshelf_validShelf_returnsBookshelf() {
@@ -77,8 +63,6 @@ public class UsersBookshelvesTest extends BaseTest {
             statusCode(anyOf(is(400), is(404)));
     }
 
-    // ---------- users/{userId}/bookshelves/{shelf}/volumes ----------
-
     @Test
     public void getUserBookshelfVolumes_validShelf_returnsVolumes() {
         Response response =
@@ -93,7 +77,6 @@ public class UsersBookshelvesTest extends BaseTest {
             body("kind", equalTo("books#volumes")).
             extract().response();
 
-        // A public shelf may legitimately be empty, so just assert the shape is correct.
         response.then().body("totalItems", greaterThanOrEqualTo(0));
     }
 
